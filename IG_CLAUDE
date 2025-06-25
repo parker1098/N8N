@@ -1,0 +1,37 @@
+{
+ "id": "claude-openrouter-request",
+ "name": "Claude IG Generator",
+ "type": "n8n-nodes-base.httpRequest",
+ "typeVersion": 4.1,
+ "position": [800, 400],
+ "parameters": {
+   "method": "POST",
+   "url": "https://openrouter.ai/api/v1/chat/completions",
+   "authentication": "genericCredentialType",
+   "genericAuthType": "httpHeaderAuth",
+   "sendHeaders": true,
+   "headerParameters": {
+     "parameters": [
+       {
+         "name": "Content-Type",
+         "value": "application/json"
+       },
+       {
+         "name": "Authorization",
+         "value": "Bearer YOUR_OPENROUTER_API_KEY"
+       },
+       {
+         "name": "HTTP-Referer",
+         "value": "https://your-domain.com"
+       },
+       {
+         "name": "X-Title",
+         "value": "Instagram Automation"
+       }
+     ]
+   },
+   "sendBody": true,
+   "bodyContentType": "json",
+   "jsonBody": "{\n  \"model\": \"anthropic/claude-3-sonnet\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are an expert Instagram strategist. Generate carousel content and return ONLY the following exact JSON structure. Do not include any other text, explanations, or markdown.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Create Instagram carousel content using:\\nTitle: {{$json[\\\"Title\\\"]}}\\nNiche: {{$json[\\\"Niche\\\"]}}\\nTone: {{$json[\\\"Tone\\\"]}}\\nTarget Country: {{$json[\\\"Target Country\\\"]}}\\nLanguage: {{$json[\\\"Language\\\"]}}\\n\\nReturn ONLY this exact JSON structure:\\n{\\n  \\\"Date\\\": \\\"\\\",\\n  \\\"Page\\\": \\\"\\\",\\n  \\\"Niche\\\": \\\"...\\\",\\n  \\\"Target Country\\\": \\\"...\\\",\\n  \\\"Language\\\": \\\"...\\\",\\n  \\\"Title\\\": \\\"...\\\",\\n  \\\"Tone\\\": \\\"...\\\",\\n  \\\"Hook Type\\\": \\\"\\\",\\n  \\\"CTA Word\\\": \\\"DM TOOLS or Link in bio\\\",\\n  \\\"Post Caption\\\": \\\"2–3 sentence Instagram caption\\\",\\n  \\\"Hashtags\\\": \\\"#ai, #growth, #tools, #future\\\",\\n  \\\"Slide 1\\\": \\\"...\\\",\\n  \\\"Slide 2\\\": \\\"...\\\",\\n  \\\"Slide 3\\\": \\\"...\\\",\\n  \\\"Slide 4\\\": \\\"...\\\",\\n  \\\"Slide 5\\\": \\\"...\\\",\\n  \\\"Slide 6\\\": \\\"...\\\",\\n  \\\"Slide 7\\\": \\\"...\\\",\\n  \\\"Slide 8\\\": \\\"...\\\",\\n  \\\"Slide 9\\\": \\\"...\\\",\\n  \\\"Slide 10\\\": \\\"...\\\",\\n  \\\"Status\\\": \\\"Generated\\\",\\n  \\\"Post Time (Local)\\\": \\\"\\\",\\n  \\\"Best Time (Global)\\\": \\\"\\\",\\n  \\\"Canva Template\\\": \\\"\\\",\\n  \\\"Link to Image Folder\\\": \\\"\\\",\\n  \\\"Posted Link\\\": \\\"\\\",\\n  \\\"Performance Notes\\\": \\\"\\\",\\n  \\\"Content Type\\\": \\\"Carousel\\\",\\n  \\\"Prompt Source\\\": \\\"Claude via n8n\\\",\\n  \\\"Repost Cycle\\\": \\\"\\\",\\n  \\\"Repurpose Platforms\\\": \\\"\\\"\\n}\"\n    }\n  ],\n  \"max_tokens\": 3000,\n  \"temperature\": 0.7,\n  \"top_p\": 1,\n  \"stream\": false\n}"
+ }
+}
